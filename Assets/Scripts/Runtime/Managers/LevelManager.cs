@@ -23,23 +23,21 @@ public class LevelManager : MonoBehaviour
 
     private readonly LevelLoaderCommand _levelLoader;
     private readonly LevelDestroyerCommand _levelDestroyer;
-    private GameData _gameData;
+    private byte _currentLevel;
 
     private void Awake()
     {
         //AssignSaveData();
     }
 
-    private void AssignSaveData()
-    {
-        _gameData.Level = SaveManager.GetSavedData();
-    }
+    
+    
 
     private void OnEnable()
     {
         SubscribeEvents();
-        //_gameData.Level = OnGetLevelID();
-        CoreGameSignals.Instance.onLevelInitialize?.Invoke(0);
+        _currentLevel = OnGetLevelID();
+        CoreGameSignals.Instance.onLevelInitialize?.Invoke(_currentLevel);
     }
 
     private void SubscribeEvents()
@@ -53,13 +51,21 @@ public class LevelManager : MonoBehaviour
 
     private byte OnGetLevelID()
     {
-        return (byte)(0 % totalLevelCount);
+        if (!ES3.FileExists())
+        {
+            return 0;
+        }
+        else
+        {
+            return (byte)(ES3.KeyExists("Level") ? ES3.Load<int>("Level") % totalLevelCount : 0);
+        }
     }
 
     private void OnNextLevel()
     {
         
-        _gameData.Level++;
+        _currentLevel++;
+        SaveSignals.Instance.onSaveGameData?.Invoke();
         CoreGameSignals.Instance.onClearActiveLevel?.Invoke();
         DOVirtual.DelayedCall(0.1f, () => CoreGameSignals.Instance.onLevelInitialize?.Invoke(OnGetLevelID()));
         CoreUISignals.Instance.onCloseAllPanels?.Invoke();
@@ -71,6 +77,7 @@ public class LevelManager : MonoBehaviour
 
     private void OnRestartLevel()
     {
+        SaveSignals.Instance.onSaveGameData?.Invoke();
         CoreGameSignals.Instance.onClearActiveLevel?.Invoke();
         DOVirtual.DelayedCall(0.1f, () => CoreGameSignals.Instance.onLevelInitialize?.Invoke(OnGetLevelID()));
         CoreUISignals.Instance.onCloseAllPanels?.Invoke();

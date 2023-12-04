@@ -296,6 +296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 350223066}
+  - component: {fileID: 350223067}
   m_Layer: 0
   m_Name: PlayerSignals
   m_TagString: Untagged
@@ -318,6 +319,18 @@ Transform:
   m_Father: {fileID: 1694923862}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &350223067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350223065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a6bb22f9efa404ca6935694d4e5be0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &362116686
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,6 +340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 362116687}
+  - component: {fileID: 362116688}
   m_Layer: 0
   m_Name: ATMSignals
   m_TagString: Untagged
@@ -349,6 +363,18 @@ Transform:
   m_Father: {fileID: 1694923862}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &362116688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362116686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18f252cd2d2ef943b90a64371531f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &365170155
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,6 +540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 568650456}
+  - component: {fileID: 568650457}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -536,6 +563,18 @@ Transform:
   m_Father: {fileID: 1694923862}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &568650457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568650455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ff631dcebfdf5459a1ec1dd62f2857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &709286154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,6 +1662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1750015910}
+  - component: {fileID: 1750015911}
   m_Layer: 0
   m_Name: ScoreSignals
   m_TagString: Untagged
@@ -1645,6 +1685,18 @@ Transform:
   m_Father: {fileID: 1694923862}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1750015911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750015909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdea3c1e38de1094385a24aec13fd5c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1788766716
 GameObject:
   m_ObjectHideFlags: 0

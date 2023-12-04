@@ -1,0 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "CD_Playter", menuName = "ATM_Rush/CD_Player", order = 1)]
+public class CD_Player : ScriptableObject
+{
+    public PlayerData Data;
+}

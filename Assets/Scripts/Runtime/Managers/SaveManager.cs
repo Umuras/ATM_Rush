@@ -1,28 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-    private static GameData _gameData;
 
-    public void SaveData()
+    private void OnEnable()
     {
-        ES3.Save<byte>("Level", _gameData.Level);
+        SubscribeEvents();
     }
 
-    public static byte GetSavedData()
+    private void SubscribeEvents()
     {
-        byte level = ES3.Load<byte>("Level");
-        _gameData.Level = level;
-
-        return _gameData.Level;
+        SaveSignals.Instance.onSaveGameData += OnSaveGameData;
     }
 
-
-    private void OnApplicationQuit()
+    private void OnSaveGameData()
     {
-        SaveData();
+        Debug.LogWarning(ScoreSignals.Instance.onGetMoney?.Invoke());
     }
 
+    private void UnSubscribeEvents()
+    {
+        SaveSignals.Instance.onSaveGameData -= OnSaveGameData;
+    }
+
+    private void OnDisable()
+    {
+        UnSubscribeEvents();
+    }
+
+    private void SaveData(SaveGameDataParams saveGameDataParams)
+    {
+        ES3.Save("Level", saveGameDataParams.Level);
+        ES3.Save("Money", saveGameDataParams.Money);
+        ES3.Save("IncomeLevel", saveGameDataParams.IncomeLevel);
+        ES3.Save("StackLevel", saveGameDataParams.StackLevel);
+
+    }
 }
