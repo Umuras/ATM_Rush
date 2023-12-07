@@ -33,7 +33,7 @@ public class PlayerPhysicsController : MonoBehaviour
         {
             //Burada tagini Collected yapmamýzýn sebebi o toplanan objenin bir daha toplanabilir hale gelmemesi için yapýyoruz.
             other.tag = "Collected";
-            //StackSignals.Instance.onInteractionCollectable?.Invoke(other.transform.parent.gameObject);
+            StackSignals.Instance.onInteractionCollectable?.Invoke(other.transform.parent.gameObject);
             return;
         }
 

@@ -18,7 +18,7 @@ public class StackTypeUpdaterCommand
         _totalListScore = 0;
         foreach (GameObject item in _collectableStack)
         {
-            //_totalListScore += (int)item.GetComponent<CollectableManager>().CollectableTypeValue + 1;
+            _totalListScore += item.GetComponent<CollectableManager>().GetCurrentValue();
         }
 
         ScoreSignals.Instance.onSetScore?.Invoke(_totalListScore);
