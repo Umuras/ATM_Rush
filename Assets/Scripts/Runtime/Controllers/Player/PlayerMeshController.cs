@@ -19,7 +19,7 @@ public class PlayerMeshController : MonoBehaviour
         PlayerSignals.Instance.onSetTotalScore += OnSetTotalScore;
     }
 
-    private void OnSetTotalScore(int value)
+    public void OnSetTotalScore(int value)
     {
         scoreText.text = value.ToString();
     }

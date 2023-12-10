@@ -5,8 +5,6 @@ public class CollectableMeshController : MonoBehaviour
 {
     [SerializeField]
     private MeshFilter meshFilter;
-    [SerializeField]
-    private MeshRenderer meshRenderer;
 
     private CollectableMeshData _data;
 

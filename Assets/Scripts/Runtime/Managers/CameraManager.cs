@@ -58,6 +58,7 @@ public class CameraManager : MonoBehaviour
 
     private void OnChangeCameraState(CameraStates state)
     {
+        Debug.Log(state + "Follow");
         animator.SetTrigger(state.ToString());
     }
 

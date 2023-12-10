@@ -31,17 +31,8 @@ public class CollectableManager : MonoBehaviour
         collectableMeshController.SetMeshData(_data.MeshData);
     }
 
-    private void OnEnable()
-    {
-        SubscribeEvents();
-    }
 
-    private void SubscribeEvents()
-    {
-        CollectableSignals.Instance.onCollectableUpgrade += OnCollectableUpgrade;
-    }
-
-    private void OnCollectableUpgrade(int value)
+    internal void CollectableUpgrade(int value)
     {
         //Burada toplanabilir obje gate kýsmýndan geçtiðinde gold mu yoksa diamonda mý yükseleceði belirleniyor.
         //money 0'a, gold 1'e, diamond'da 2'ye eþit.
@@ -53,16 +44,6 @@ public class CollectableManager : MonoBehaviour
         collectableMeshController.OnUpgradeCollectableVisual(_currentValue);
         //Total skoru güncelliyor.
         StackSignals.Instance.onUpdateType?.Invoke();
-    }
-
-    private void UnSubscribeEvents()
-    {
-        CollectableSignals.Instance.onCollectableUpgrade -= OnCollectableUpgrade;
-    }
-
-    private void OnDisable()
-    {
-        UnSubscribeEvents();
     }
 
     public byte GetCurrentValue()

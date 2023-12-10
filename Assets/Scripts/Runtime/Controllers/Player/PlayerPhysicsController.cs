@@ -7,8 +7,6 @@ public class PlayerPhysicsController : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody managerRigidbody;
-    [SerializeField]
-    private new Collider collider;
 
     private readonly string _obstacle = "Obstacle";
     private readonly string _atm = "ATM";
@@ -40,6 +38,7 @@ public class PlayerPhysicsController : MonoBehaviour
         if (other.CompareTag(_miniGameArea))
         {
             CoreGameSignals.Instance.onMiniGameEntered?.Invoke();
+            CameraSignals.Instance.onChangeCameraState(CameraStates.MiniGame);
             return;
         }
     }

@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         _data = GetPlayerData();
+        SendPlayerDataToControllers();    
     }
 
     private PlayerData GetPlayerData()
@@ -79,7 +80,8 @@ public class PlayerManager : MonoBehaviour
 
     private void OnSetTotalScore(int value)
     {
-        PlayerSignals.Instance.onSetTotalScore?.Invoke(value);
+        //PlayerSignals.Instance.onSetTotalScore?.Invoke(value);
+        meshController.OnSetTotalScore(value);
     }
 
     private void OnLevelSuccessful()

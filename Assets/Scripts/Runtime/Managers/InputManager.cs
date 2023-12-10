@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class InputManager : MonoBehaviour
 {
     [Header("Data")]
-    private CD_Input _data;
+    private InputData _data;
     
     [Header("Additional Variables")]
     private bool _isAvailableForTouch;
@@ -20,6 +20,16 @@ public class InputManager : MonoBehaviour
     private float _currentVelocity;
     private Vector2? _mousePosition;
     private Vector3 _moveVector;
+
+    private void Awake()
+    {
+        _data = GetInputData();   
+    }
+
+    private InputData GetInputData()
+    {
+        return Resources.Load<CD_Input>("Data/CD_Input").Data;
+    }
 
     private void OnEnable()
     {
@@ -97,18 +107,18 @@ public class InputManager : MonoBehaviour
                 {
                     Vector2 mouseDeltaPos = (Vector2)Input.mousePosition - _mousePosition.Value;
 
-                    if (mouseDeltaPos.x > _data.Data.HorizontalInputSpeed)
+                    if (mouseDeltaPos.x > _data.HorizontalInputSpeed)
                     {
-                        _moveVector.x = _data.Data.HorizontalInputSpeed / 10f * mouseDeltaPos.x;
+                        _moveVector.x = _data.HorizontalInputSpeed / 10f * mouseDeltaPos.x;
                     }
-                    else if (mouseDeltaPos.x < -_data.Data.HorizontalInputSpeed)
+                    else if (mouseDeltaPos.x < -_data.HorizontalInputSpeed)
                     {
-                        _moveVector.x = -_data.Data.HorizontalInputSpeed / 10f * -mouseDeltaPos.x;
+                        _moveVector.x = -_data.HorizontalInputSpeed / 10f * -mouseDeltaPos.x;
                     }
                     else
                     {
                         _moveVector.x = Mathf.SmoothDamp(_moveVector.x, 0f, ref _currentVelocity,
-                            _data.Data.HorizontalInputClampStopValue);
+                            _data.HorizontalInputClampStopValue);
                     }
 
                     _mousePosition = Input.mousePosition;
@@ -116,7 +126,7 @@ public class InputManager : MonoBehaviour
                     InputSignals.Instance.onInputDragged?.Invoke(new HorizontalInputParams()
                     {
                         HorizontalInputValue = _moveVector.x,
-                        HorizontalInputClampSides = _data.Data.HorizontalInputClampSides
+                        HorizontalInputClampSides = _data.HorizontalInputClampSides
                     });
                 }
             }
