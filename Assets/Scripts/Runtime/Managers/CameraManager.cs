@@ -38,22 +38,20 @@ public class CameraManager : MonoBehaviour
 
     private void OnSetCinemachineTarget(CameraTargetState state)
     {
-        //switch (state) 
-        //{
-        //    case CameraTargetState.Player:
-        //            Transform playerManager = FindAnyObjectByType<PlayerManager>().transform;
-        //            stateDrivenCamera.Follow = playerManager;
-        //            break;
-        //    case CameraTargetState.FakePlayer:
-        //        stateDrivenCamera.Follow = null;
-        //        //Transform fakePlayer = FindAnyObjectByType<WallCheckController>().tranform.parent.transform;
-        //        //stateDrivenCamera.Follow = fakePlayer;
-        //        break;
-        //    default:
-        //        throw new ArgumentOutOfRangeException(nameof(state), state, null);
-        //}
-        Transform playerManager = FindObjectOfType<PlayerManager>().transform;
-        stateDrivenCamera.Follow = playerManager;
+        switch (state)
+        {
+            case CameraTargetState.Player:
+                Transform playerManager = FindAnyObjectByType<PlayerManager>().transform;
+                stateDrivenCamera.Follow = playerManager;
+                break;
+            case CameraTargetState.FakePlayer:
+                stateDrivenCamera.Follow = null;
+                Transform fakePlayer = FindAnyObjectByType<WallCheckController>().transform.parent.transform;
+                stateDrivenCamera.Follow = fakePlayer;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(state), state, null);
+        }
     }
 
     private void OnChangeCameraState(CameraStates state)

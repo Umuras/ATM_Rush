@@ -27,6 +27,8 @@ public class CollectablePhysicsController : MonoBehaviour
         //atm, obstacle ya da atm gibi yerlere deðdiðinde iþleme girmesin diye saðlama amaçlý.
         if (other.CompareTag(_gate) && CompareTag(_collected))
         {
+            //Burada sinyal üzerinden yapmamýzýn sebebi o andaki tüm collectableGameObjectleri mesh deðiþimi yapýyor, çünkü hepsinin üzerinde o sinyal
+            //dinlendiði için problem oluþuyor, bu þekilde nesne üzerinden eriþerek bunun önüne geçiyoruz.
             collectableManager.CollectableUpgrade(collectableManager.GetCurrentValue());
         }
 

@@ -25,13 +25,14 @@ public class ItemAdderOnStackCommand
             //Eklenilen gameobjecti StackManager gameobjectinin childi yapýyoruz.
             collectableGameObject.transform.SetParent(_stackManager.transform);
             //StackManager'ý global vektör kabul edip managere göre origin kabul edip kendi localPositionýmýzý 0,0,0 yapýyoruz.
-            collectableGameObject.transform.localPosition = Vector3.zero;
+            collectableGameObject.transform.localPosition = new Vector3(0,1f,0.335f);
         }
         else
         {
             //Gelen gameobjecti yine stackManager gameobjectinin childi yapýyoruz.
             collectableGameObject.transform.SetParent(_stackManager.transform);
             //Pozisyon olarak bu sefer listeye en son eklenen collectableGameObjectin pozisyonunu alýyoruz.
+            //_collectableStack[_collectableStack.Count - 1] == _collectableStack[^1]
             Vector3 newPos = _collectableStack[_collectableStack.Count - 1].transform.localPosition;
             //ve z ekseninde belli mesefa öteliyoruz. Bunu yapmamýzýn sebebi ayný konumda bulunurlarsa üst üste binerler, ileri öteleyerek belli 
             //mesafe aralýk oluþturuyoruz.

@@ -80,6 +80,9 @@ public class PlayerManager : MonoBehaviour
 
     private void OnSetTotalScore(int value)
     {
+        //Burada normalde sinyal üzerinden yapýyorduk ama PlayerManager üzerinde PlayerSignals'ý tetikleyince orada dinlenen fonksiyon sürekli
+        //sonsuz döngüye girip kendini tetikliyordu ve çalýþmýyordu, OnSetTotalScore fonksiyonunu internal yaparak direk nesne üzerinden
+        //eriþimi saðladýk.
         //PlayerSignals.Instance.onSetTotalScore?.Invoke(value);
         meshController.OnSetTotalScore(value);
     }

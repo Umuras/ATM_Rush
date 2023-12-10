@@ -16,8 +16,8 @@ public class StackMoverCommand
     {
         //Burada ilk paranýn x konumu directionX konumuna doðru lerpSpeed hýzýnda ilerleyecek þekilde ayarlanýyor.
         float direct = Mathf.Lerp(collectableStack[0].transform.localPosition.x, directionX, _data.LerpSpeed);
-        //Sonra ilk elemanýn pozisyonu buraya çekiliyor.
-        collectableStack[0].transform.localPosition = new Vector3(direct, 0, 0);
+        //Sonra ilk elemanýn pozisyonu buraya çekiliyor. Toplanabilir objenin konumu 
+        collectableStack[0].transform.localPosition = new Vector3(direct, 1f, 0.335f);
         StackItemsLerpMove(collectableStack);
     }
 

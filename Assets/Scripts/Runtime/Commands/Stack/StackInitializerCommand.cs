@@ -18,7 +18,8 @@ public class StackInitializerCommand
     public void Execute()
     {
         //StackLevel'ý alýyor
-        for (int i = 0; i < CoreGameSignals.Instance.onGetStackLevel?.Invoke(); i++)
+        byte stackLevel = (byte)CoreGameSignals.Instance.onGetStackLevel?.Invoke();
+        for (int i = 1; i < stackLevel; i++)
         {
             //Stacklevel kadar money üretip collectableGameObjecte onlarý ekleyip tiplerini Update ediyor.
             GameObject obj = Object.Instantiate(_money);

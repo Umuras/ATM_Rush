@@ -98,7 +98,8 @@ public class StackManager : MonoBehaviour
 
     private void OnInteractionWithATM(GameObject collectableGameObject)
     {
-        ScoreSignals.Instance.onSetAtmScore?.Invoke(collectableGameObject.GetComponent<CollectableManager>().GetCurrentValue());
+        //GetCurrentValue + 1 dememizin sebebi deðer 0'dan baþlýyor ekleme yapmasý lazým.
+        ScoreSignals.Instance.onSetAtmScore?.Invoke(collectableGameObject.GetComponent<CollectableManager>().GetCurrentValue() + 1);
         if (_lastCheck == false)
         {
             _itemRemoverOnStackCommand.Execute(collectableGameObject);

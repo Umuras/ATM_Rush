@@ -24,7 +24,7 @@ public class CollectableMeshController : MonoBehaviour
     }
 
 
-    public void OnUpgradeCollectableVisual(int value)
+    internal void UpgradeCollectableVisual(int value)
     {
         meshFilter.mesh = _data.MeshList[value];
     }

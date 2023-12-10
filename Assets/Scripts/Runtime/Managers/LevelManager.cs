@@ -25,14 +25,6 @@ public class LevelManager : MonoBehaviour
     private readonly LevelDestroyerCommand _levelDestroyer;
     private byte _currentLevel;
 
-    private void Awake()
-    {
-        //AssignSaveData();
-    }
-
-    
-    
-
     private void OnEnable()
     {
         SubscribeEvents();
@@ -67,8 +59,7 @@ public class LevelManager : MonoBehaviour
         _currentLevel++;
         SaveSignals.Instance.onSaveGameData?.Invoke();
         CoreGameSignals.Instance.onClearActiveLevel?.Invoke();
-        DOVirtual.DelayedCall(0.1f, () => CoreGameSignals.Instance.onLevelInitialize?.Invoke(OnGetLevelID()));
-        CoreUISignals.Instance.onCloseAllPanels?.Invoke();
+        CoreGameSignals.Instance.onLevelInitialize?.Invoke(OnGetLevelID());
         //onLevelInitialize Sinyalinde zaten UIManagerde bütün panelleri açtýðý için burada bir daha açmamýz gerekmiyor.
         //CoreUISignals.Instance.onOpenPanel?.Invoke(UIPanelTypes.Start,0);
         //CoreUISignals.Instance.onOpenPanel?.Invoke(UIPanelTypes.Level, 1);
@@ -79,8 +70,7 @@ public class LevelManager : MonoBehaviour
     {
         SaveSignals.Instance.onSaveGameData?.Invoke();
         CoreGameSignals.Instance.onClearActiveLevel?.Invoke();
-        DOVirtual.DelayedCall(0.1f, () => CoreGameSignals.Instance.onLevelInitialize?.Invoke(OnGetLevelID()));
-        CoreUISignals.Instance.onCloseAllPanels?.Invoke();
+        CoreGameSignals.Instance.onLevelInitialize?.Invoke(OnGetLevelID());
         //onLevelInitialize Sinyalinde zaten UIManagerde bütün panelleri açtýðý için burada bir daha açmamýz gerekmiyor.
         //CoreUISignals.Instance.onOpenPanel?.Invoke(UIPanelTypes.Start, 0);
         //CoreUISignals.Instance.onOpenPanel?.Invoke(UIPanelTypes.Level, 1);

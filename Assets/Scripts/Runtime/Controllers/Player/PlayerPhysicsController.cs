@@ -11,7 +11,7 @@ public class PlayerPhysicsController : MonoBehaviour
     private readonly string _obstacle = "Obstacle";
     private readonly string _atm = "ATM";
     private readonly string _collectable = "Collectable";
-    private readonly string _miniGameArea = "MiniGameArea";
+    private readonly string _conveyor = "Conveyor";
 
     private void OnTriggerEnter(Collider other)
     {
@@ -35,10 +35,11 @@ public class PlayerPhysicsController : MonoBehaviour
             return;
         }
 
-        if (other.CompareTag(_miniGameArea))
+        if (other.CompareTag(_conveyor))
         {
             CoreGameSignals.Instance.onMiniGameEntered?.Invoke();
-            CameraSignals.Instance.onChangeCameraState(CameraStates.MiniGame);
+            DOVirtual.DelayedCall(1.5f, () => CameraSignals.Instance.onChangeCameraState(CameraStates.MiniGame));
+            DOVirtual.DelayedCall(2.5f, () => CameraSignals.Instance.onSetCinemachineTarget(CameraTargetState.FakePlayer));
             return;
         }
     }

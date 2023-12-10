@@ -22,6 +22,9 @@ public class LevelLoaderCommand
             if (newLevel != null)
             {
                 newLevel.transform.SetParent(_levelManager.levelHolder.transform);
+                //Burada bu sinyali tetiklememizin sebebi buna baðlý olan fonksiyon PlayerManagera ihtiyaç duyuyor ve levelýn oluþma iþlemi asenkron
+                //olduðu için completed olduktan sonra yapmamýz gerekiyor, yoksa hata alýyoruz.
+                CameraSignals.Instance.onSetCinemachineTarget?.Invoke(CameraTargetState.Player);
             }
         };
     }

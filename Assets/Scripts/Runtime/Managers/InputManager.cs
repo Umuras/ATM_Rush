@@ -82,7 +82,6 @@ public class InputManager : MonoBehaviour
             _isTouching = false;
 
             InputSignals.Instance.onInputReleased?.Invoke();
-            InputSignals.Instance.onChangeInputState?.Invoke(false);
         }
 
         if (Input.GetMouseButtonDown(0) && !IsPointerOverUIElement())

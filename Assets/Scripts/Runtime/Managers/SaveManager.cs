@@ -18,7 +18,13 @@ public class SaveManager : MonoBehaviour
 
     private void OnSaveGameData()
     {
-        Debug.LogWarning(ScoreSignals.Instance.onGetMoney?.Invoke());
+        SaveData(new SaveGameDataParams()
+        {
+            Money = ScoreSignals.Instance.onGetMoney(),
+            Level = CoreGameSignals.Instance.onGetLevelID(),
+            IncomeLevel = CoreGameSignals.Instance.onGetIncomeLevel(),
+            StackLevel = CoreGameSignals.Instance.onGetStackLevel()
+        });
     }
 
     private void UnSubscribeEvents()

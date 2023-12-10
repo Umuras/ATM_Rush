@@ -34,7 +34,6 @@ public class UIManager : MonoBehaviour
         CoreUISignals.Instance.onOpenPanel?.Invoke(UIPanelTypes.Level, 1);
         CoreUISignals.Instance.onOpenPanel?.Invoke(UIPanelTypes.Shop, 2);
         UISignals.Instance.onSetNewLevelValue?.Invoke(levelValue);
-        CameraSignals.Instance.onSetCinemachineTarget?.Invoke(CameraTargetState.Player);
     }
 
     public void OnPlay()
@@ -106,6 +105,6 @@ public class UIManager : MonoBehaviour
 
     private void OnReset()
     {
-        CoreUISignals.Instance.onCloseAllPanels?.Invoke();
+        //CoreUISignals.Instance.onCloseAllPanels?.Invoke();
     }
 }

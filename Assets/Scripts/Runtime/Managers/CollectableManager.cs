@@ -41,7 +41,7 @@ public class CollectableManager : MonoBehaviour
             _currentValue++;
         }
         //Burada mesh deðiþimi yapýyoruz.
-        collectableMeshController.OnUpgradeCollectableVisual(_currentValue);
+        collectableMeshController.UpgradeCollectableVisual(_currentValue);
         //Total skoru güncelliyor.
         StackSignals.Instance.onUpdateType?.Invoke();
     }

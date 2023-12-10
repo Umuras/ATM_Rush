@@ -128,7 +128,7 @@ public class MiniGameManager : MonoBehaviour
     //konumlarýna getiriliyor.
     private void ResetWalls()
     {
-        for (int i = 0; i < wallCount; i++)
+        for (int i = 1; i < wallCount; i++)
         {
             transform.GetChild(i).GetComponent<Renderer>().material = mat;
             transform.GetChild(i).position = Vector3.zero;
