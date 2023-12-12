@@ -124,7 +124,7 @@ public class PlayerManager : MonoBehaviour
     internal void SetStackPosition()
     {
         Vector3 position = transform.position;
-        Vector2 pos = new Vector2(position.x, position.y);
+        Vector2 pos = new Vector2(position.x, position.z);
         StackSignals.Instance.onStackFollowPlayer?.Invoke(pos);
     }
 

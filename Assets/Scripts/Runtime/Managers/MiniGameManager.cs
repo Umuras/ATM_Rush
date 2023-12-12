@@ -109,7 +109,7 @@ public class MiniGameManager : MonoBehaviour
         for (int i = 0; i < wallCount; i++)
         {
             GameObject wall = Instantiate(wallObjects,transform);
-            wall.transform.localPosition = new Vector3(0, i + 10, 0);
+            wall.transform.localPosition = new Vector3(0, i * 10, 0);
             wall.transform.GetChild(0).GetComponent<TextMeshPro>().text = "x" + ((i / 10f) + 1f);
         }
     }
@@ -131,7 +131,8 @@ public class MiniGameManager : MonoBehaviour
         for (int i = 1; i < wallCount; i++)
         {
             transform.GetChild(i).GetComponent<Renderer>().material = mat;
-            transform.GetChild(i).position = Vector3.zero;
+            Vector3 wallPos = transform.GetChild(i).localPosition;
+            transform.GetChild(i).localPosition = new Vector3(wallPos.x, wallPos.y, 0);
         }
     }
     
