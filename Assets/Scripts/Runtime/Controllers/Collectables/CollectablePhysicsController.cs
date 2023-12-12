@@ -16,7 +16,6 @@ public class CollectablePhysicsController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Burayý anlamadým.
         if (other.CompareTag(_collectable) && CompareTag(_collected))
         {
             other.tag = _collected;
