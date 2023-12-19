@@ -17,6 +17,7 @@ public class OnClickIncomeCommand
 
     internal void Execute()
     {
+        //_newPriceTag = (int)(CoreGameSignals.Instance.onGetIncomeLevel() -((Mathf.Pow(2, Mathf.Clamp(_incomeLevel, 0, 10)) * 100)));
         _newPriceTag = (int)(ScoreSignals.Instance.onGetMoney?.Invoke() - ((Mathf.Pow(2, Mathf.Clamp(_incomeLevel, 0, 10)) * 100)));
         _incomeLevel += 1;
         _featureManager.SetIncomeLevel(_incomeLevel);

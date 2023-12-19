@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour
     private void OnEnable()
     {
         SubscribeEvents();
-        _currentLevel = OnGetLevelID();
+        _currentLevel = GetLevelFromSaveSystem();
         CoreGameSignals.Instance.onLevelInitialize?.Invoke(_currentLevel);
     }
 
@@ -43,14 +43,15 @@ public class LevelManager : MonoBehaviour
 
     private byte OnGetLevelID()
     {
-        if (!ES3.FileExists())
-        {
-            return 0;
-        }
-        else
-        {
-            return (byte)(ES3.KeyExists("Level") ? ES3.Load<int>("Level") % totalLevelCount : 0);
-        }
+        //if (!ES3.FileExists())
+        //{
+        //    return 0;
+        //}
+        //else
+        //{
+        //    return (byte)(ES3.KeyExists("Level") ? ES3.Load<int>("Level") % totalLevelCount : 0);
+        //}
+        return _currentLevel;
     }
 
     private void OnNextLevel()
@@ -89,5 +90,17 @@ public class LevelManager : MonoBehaviour
     private void OnDisable()
     {
         UnSubscribeEvents();
+    }
+
+    private byte GetLevelFromSaveSystem()
+    {
+        if (!ES3.FileExists())
+        {
+            return 0;
+        }
+        else
+        {
+            return (byte)(ES3.KeyExists("Level") ? ES3.Load<int>("Level") % totalLevelCount : 0);
+        }
     }
 }

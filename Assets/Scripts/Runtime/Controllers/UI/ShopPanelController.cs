@@ -39,6 +39,7 @@ public class ShopPanelController : MonoBehaviour
         //0 oluyor, 10'dan büyük gelirse 10 oluyor. Örn. 2^3 = 8 *100 = 800 geliyor mesela.
         stackValue.text = (Mathf.Pow(2, Mathf.Clamp((byte)CoreGameSignals.Instance.onGetStackLevel?.Invoke(), (byte)0, (byte)10)) * 100).
             ToString();
+        ChangesStackInteractable();
     }
 
     private void OnSetIncomeLvlText()
@@ -46,6 +47,7 @@ public class ShopPanelController : MonoBehaviour
         incomeLvlText.text = "Income lvl\n" + CoreGameSignals.Instance.onGetIncomeLevel?.Invoke();
         incomeValue.text = (Mathf.Pow(2, Mathf.Clamp((byte)CoreGameSignals.Instance.onGetIncomeLevel?.Invoke(), 0, 10)) * 100).
             ToString();
+        ChangesIncomeInteractable();
     }
 
     private void UnSubscribeEvents()

@@ -131,6 +131,7 @@ public class MiniGameManager : MonoBehaviour
         for (int i = 1; i < wallCount; i++)
         {
             transform.GetChild(i).GetComponent<Renderer>().material = mat;
+            //transform.GetChild(i).transform.position = Vector3.zero;
             Vector3 wallPos = transform.GetChild(i).localPosition;
             transform.GetChild(i).localPosition = new Vector3(wallPos.x, wallPos.y, 0);
         }

@@ -17,8 +17,10 @@ public class OnClickStackCommand
 
     internal void Execute()
     {
+        //_newPriceTag = (int)(CoreGameSignals.Instance.onGetStackLevel() -((Mathf.Pow(2, Mathf.Clamp(_incomeLevel, 0, 10)) * 100)));
         _newPriceTag = (int)(ScoreSignals.Instance.onGetMoney?.Invoke() - ((Mathf.Pow(2, Mathf.Clamp(_stackLevel, 0,10))*100)));
         _stackLevel += 1;
+        _featureManager.SetStackLevel(_stackLevel);
         ScoreSignals.Instance.onSendMoney?.Invoke((int)_newPriceTag);
         UISignals.Instance.onSetMoneyValue?.Invoke((int)_newPriceTag);
         _featureManager.SaveFeatureData();

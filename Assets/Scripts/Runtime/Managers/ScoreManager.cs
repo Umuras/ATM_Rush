@@ -50,7 +50,10 @@ public class ScoreManager : MonoBehaviour
         //Burada ise setScore StackTypeUpdaterCommand üzerinde hesaplanan totalListScoredýr, _stackValueMultiplier(IncomeLeveldýr), _atmScoreValue
         //ise OnSetAtmScore üzerinde hesaplanýr. totalListScore toplanan objenin + 1 deðeri üzerinden gelmektedir ve bu fonksiyon her obje için çalýþtýðý için
         //_scoreCache deðeri ve setScore deðiþmektedir.
+        //Burada _atmScoreValue ile toplamasýnýn sebebi parayý atmye yatýrdýðýnda atmde olan parayý da ekleyip öyle _scoreCache deðeri hesaplanýyor.
+        //_scoreCache oyunun sonunda toplanan tüm para oluyor aslýnda
         _scoreCache = (setScore * _stackValueMultiplier) + _atmScoreValue;
+        Debug.LogError($"scoreCache {_scoreCache}, stackValue(IncomeLevel) = {_stackValueMultiplier}, atmScore = {_atmScoreValue}");
         //Burada da totalListScoreu Playerýn üstündeki score textine yazdýrýyoruz.
         PlayerSignals.Instance.onSetTotalScore?.Invoke(setScore);
     }
@@ -59,6 +62,7 @@ public class ScoreManager : MonoBehaviour
     private void OnSetAtmScore(int atmValues)
     {
         _atmScoreValue += atmValues * _stackValueMultiplier;
+        Debug.LogError($"atmScoreValue = {_atmScoreValue} atmValues = {atmValues} stackValueMultiplies(IncomeLevel) = {_stackValueMultiplier}");
         AtmSignals.Instance.onSetAtmScoreText?.Invoke(_atmScoreValue);
     }
     //Oyundaki son score deðerini göndererek minigamede karakterin ne kadar yükseleceði belli oluyor.

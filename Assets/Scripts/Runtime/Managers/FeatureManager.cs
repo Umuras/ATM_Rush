@@ -80,4 +80,9 @@ public class FeatureManager : MonoBehaviour
     {
         _incomeLevel = incomeLevel;
     }
+
+    internal void SetStackLevel(byte stackLevel)
+    {
+        _stackLevel = stackLevel;
+    }
 }
