@@ -18,6 +18,7 @@ public class SaveManager : MonoBehaviour
 
     private void OnSaveGameData()
     {
+        Debug.LogError(ScoreSignals.Instance.onGetMoney());
         SaveData(new SaveGameDataParams()
         {
             Money = ScoreSignals.Instance.onGetMoney(),

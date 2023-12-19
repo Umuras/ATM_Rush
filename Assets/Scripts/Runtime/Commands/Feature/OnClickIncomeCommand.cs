@@ -6,7 +6,7 @@ public class OnClickIncomeCommand
 {
     private FeatureManager _featureManager;
     private int _newPriceTag;
-    private int _incomeLevel;
+    private byte _incomeLevel;
 
     public OnClickIncomeCommand(FeatureManager featureManager, ref int newPriceTag, ref byte incomeLevel)
     {
@@ -17,11 +17,9 @@ public class OnClickIncomeCommand
 
     internal void Execute()
     {
-        Debug.Log(CoreGameSignals.Instance.onGetIncomeLevel());
-        Debug.Log(ScoreSignals.Instance.onGetMoney?.Invoke());
-        Debug.Log(((Mathf.Pow(2, Mathf.Clamp(_incomeLevel, 0, 10)) * 100)));
         _newPriceTag = (int)(ScoreSignals.Instance.onGetMoney?.Invoke() - ((Mathf.Pow(2, Mathf.Clamp(_incomeLevel, 0, 10)) * 100)));
         _incomeLevel += 1;
+        _featureManager.SetIncomeLevel(_incomeLevel);
         ScoreSignals.Instance.onSendMoney?.Invoke((int)_newPriceTag);
         UISignals.Instance.onSetMoneyValue?.Invoke((int)_newPriceTag);
         _featureManager.SaveFeatureData();

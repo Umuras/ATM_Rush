@@ -33,7 +33,7 @@ public class ScoreManager : MonoBehaviour
         CoreGameSignals.Instance.onLevelFailed += RefreshMoney;
 
     }
-
+    //Income veya Stack butonuna týklayýnca elde edilen yeni parayý yüklüyoruz.
     private void OnSendMoney(int value)
     {
         _money = value;
@@ -61,12 +61,12 @@ public class ScoreManager : MonoBehaviour
         _atmScoreValue += atmValues * _stackValueMultiplier;
         AtmSignals.Instance.onSetAtmScoreText?.Invoke(_atmScoreValue);
     }
-
+    //Oyundaki son score deðerini göndererek minigamede karakterin ne kadar yükseleceði belli oluyor.
     private void OnSendFinalScore()
     {
         ScoreSignals.Instance.onSendFinalScore?.Invoke(_scoreCache);
     }
-
+    //IncomeLevelý getiriyoruz ve stackValueMultipliere yüklüyoruz.
     private void OnSetValueMultiplier()
     {
         _stackValueMultiplier = (int)CoreGameSignals.Instance.onGetIncomeLevel?.Invoke();

@@ -35,7 +35,7 @@ public class ItemAdderOnStackCommand
             //_collectableStack[_collectableStack.Count - 1] == _collectableStack[^1]
             Vector3 newPos = _collectableStack[_collectableStack.Count - 1].transform.localPosition;
             //ve z ekseninde belli mesefa öteliyoruz. Bunu yapmamýzýn sebebi ayný konumda bulunurlarsa üst üste binerler, ileri öteleyerek belli 
-            //mesafe aralýk oluþturuyoruz.
+            //mesafe aralýk oluþturuyoruz. _data.CollectableOffsetInStack 1 deðerini taþýyor, 1 birim boþluk oluþuyor.
             newPos.z += _data.CollectableOffsetInStack;
             //Yeni pozisyonumuzu ekliyoruz.
             collectableGameObject.transform.localPosition = newPos;

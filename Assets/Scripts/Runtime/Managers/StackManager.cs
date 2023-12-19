@@ -87,18 +87,24 @@ public class StackManager : MonoBehaviour
         CoreGameSignals.Instance.onReset += OnReset;
     }
 
+    //Direction ile karakterin x ve z konumu gönderiliyor.
     private void OnStackMove(Vector2 direction)
     {
+        //stackManager gameobjectinin direction verisine göre konumu belirleniyor, çünkü collectableObjectler stackManager altýnda toplanýyor
+        //direction.y dediði karakterin z ekseni.
         transform.position = new Vector3(0, gameObject.transform.position.y, direction.y + 2f);
+        //childCount kontrolü collectableObjectler stackManager childi olduðu içindir.
         if (gameObject.transform.childCount > 0)
         {
+            //Karakterin x konumu ve _collectableStack yani toplanabilirObje listesi gönderiliyor.
             _stackMoverCommand.Execute(direction.x, _collectableStack);
         }
     }
 
     private void OnInteractionWithATM(GameObject collectableGameObject)
     {
-        //GetCurrentValue + 1 dememizin sebebi deðer 0'dan baþlýyor ekleme yapmasý lazým.
+        //GetCurrentValue + 1 dememizin sebebi deðer 0'dan baþlýyor ekleme yapmasý lazým. StackTypeUpdaterCommand'de bu kullaným þekli
+        //detaylý olarak yazýyor.
         ScoreSignals.Instance.onSetAtmScore((int)collectableGameObject.GetComponent<CollectableManager>().GetCurrentValue() + 1);
         if (_lastCheck == false)
         {
@@ -109,12 +115,16 @@ public class StackManager : MonoBehaviour
             collectableGameObject.SetActive(false);
         }
     }
-
+    //Toplanmýþ ve toplanabilecek olan obje birbirine deðdiði zaman çalýþýyor.
     private void OnInteractionWithCollectable(GameObject collectableGameObject)
     {
+        //stackJumperCommanddaki Dotweenler bitittiriliyor.
         DOTween.Complete(_stackJumperCommand);
+        //Toplanan obje stacke ekleniyor.
         _itemAdderOnStackCommand.Execute(collectableGameObject);
+        //Sondan baþa doðru stack animasyonu çalýþýyor.
         StartCoroutine(_stackAnimatorCommand.Execute());
+        //Eklenen obje üzerinden tekrardan yeni skor hesaplanýyor.
         _stackTypeUpdaterCommand.Execute();
     }
 

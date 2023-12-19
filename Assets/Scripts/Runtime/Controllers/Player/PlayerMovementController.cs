@@ -29,18 +29,18 @@ public class PlayerMovementController : MonoBehaviour
     {
         _isReadyToPlay = condition;
     }
-
+    //PlayerManager üzerinde movementData gönderilip scriptableObject üzerindeki movementData verilerinin kullanabilmesi için oluþturuldu.
     internal void SetMovementData(PlayerMovementData movementData)
     {
         _data = movementData;
     }
-
+    //InputDragged çalýþtýðýnda(InputManagerda çalýþýyor) o anki güncel verileri almak için oluþturuldu.
     internal void UpdateInputValue(HorizontalInputParams inputParams)
     {
         _inputValue = inputParams.HorizontalInputValue;
         _clampValues = inputParams.HorizontalInputClampSides;
     }
-
+    //Karakter oynanabilir haldeyken toplanabilir objelerin posizyonu ayarlanýyor, sürekli olarak. 
     private void Update()
     {
         if (_isReadyToPlay)
@@ -67,25 +67,25 @@ public class PlayerMovementController : MonoBehaviour
             Stop();
         }
     }
-
+    //Karakterin öne doðru gittiði sabit hýzý ve saða sola gitme hýzý ve saða sola gitme sýnýrý ayarlanýyor.
     private void Move()
     {
         Vector3 velocity = rigidbody.velocity;
         velocity = new Vector3(_inputValue * _data.SidewaysSpeed, velocity.y, _data.ForwardSpeed);
         rigidbody.velocity = velocity;
-
+        //Karakterin pozisyonunu _clampValues -5 ve 5 deðerince kýsýtlýyor.
         Vector3 position = rigidbody.position;
         position = new Vector3(Math.Clamp(position.x, _clampValues.x, _clampValues.y),(position = rigidbody.position).y,position.z);
         rigidbody.position = position;
     }
 
-    //Telefondan parmaðýmýzý çekince çalýþacak kýsým.
+    //Telefondan parmaðýmýzý çekince çalýþacak kýsým. Saða sola gidiþ engelleniyor.
     private void StopSideways()
     {
         rigidbody.velocity = new Vector3(0, rigidbody.velocity.y, _data.ForwardSpeed);
         rigidbody.angularVelocity = Vector3.zero;
     }
-
+    //Karakter komple duruyor.
     private void Stop()
     {
         rigidbody.velocity = Vector3.zero;

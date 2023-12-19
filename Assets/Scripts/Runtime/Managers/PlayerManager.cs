@@ -121,6 +121,8 @@ public class PlayerManager : MonoBehaviour
         UnSubscribeEvents();
     }
 
+    //Burada playerin mevcut x ve z konumu belirlenip onStackFollowPlayer'e baðlý fonksiyona gönderiliyor ve
+    //SetStackPosition PlayerMovementControllerda Updatede bulunduðu için karakterin her hareket halinde olduðu zaman çalýþýyor.
     internal void SetStackPosition()
     {
         Vector3 position = transform.position;

@@ -75,4 +75,9 @@ public class FeatureManager : MonoBehaviour
     {
         SaveSignals.Instance.onSaveGameData?.Invoke();
     }
+
+    internal void SetIncomeLevel(byte incomeLevel)
+    {
+        _incomeLevel = incomeLevel;
+    }
 }

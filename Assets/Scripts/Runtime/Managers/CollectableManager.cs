@@ -26,6 +26,7 @@ public class CollectableManager : MonoBehaviour
     {
         return Resources.Load<CD_Collectable>(_collectableDataPath).Data;
     }
+    //collectableMeshControllerda MeshDataya ihtiyaç duyduðumuzdan scriptableObject üzerinden dataya eriþip mesh datayý gönderiyoruz.
     private void SendDataToController()
     {
         collectableMeshController.SetMeshData(_data.MeshData);

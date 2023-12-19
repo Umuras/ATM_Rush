@@ -11,7 +11,7 @@ public class StackMoverCommand
     {
         _data = stackData;
     }
-
+    //Bu Command karakter saða sola hareket ettiðinde toplanmýþ objelerin yýlan hareketi yapmasýný saðlýyor.
     internal void Execute(float directionX, List<GameObject> collectableStack)
     {
         //Burada ilk paranýn x konumu directionX konumuna doðru lerpSpeed hýzýnda ilerleyecek þekilde ayarlanýyor.
