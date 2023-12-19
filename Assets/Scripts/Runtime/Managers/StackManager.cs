@@ -50,18 +50,18 @@ public class StackManager : MonoBehaviour
         _stackMoverCommand = new StackMoverCommand(ref _data);
         //Listeye yeni bir eleman eklemek için kullanacaðýmýz Command ItemAdderOnStackCommand.
         _itemAdderOnStackCommand = new ItemAdderOnStackCommand(this, ref _collectableStack, ref _data);
-        //Listeden eleman çýkarmak için kullanacaðýmýz Command ItemAdderOnStackCommand.
+        //Listeden eleman çýkarmak için kullanacaðýmýz Command ItemRemoverOnStackCommand.
         _itemRemoverOnStackCommand = new ItemRemoverOnStackCommand(this, ref _collectableStack);
         //Animasyonlarýn kontrolü için kullanýlacak Command StackAnimatorCommand
         _stackAnimatorCommand = new StackAnimatorCommand(this, _data, ref _collectableStack);
-        //Karaterin topladýðý para veya altýnlarý engele çarptýðýnda zýplatarak yer düþmesini saðlayacak command StackJumperCommand
+        //Karakterin topladýðý para veya altýnlarý engele çarptýðýnda zýplatarak yer düþmesini saðlayacak command StackJumperCommand
         _stackJumperCommand = new StackJumperCommand(_data, ref _collectableStack);
         //Oyunun sonunda paralarýn konveyore konup ana atmye aktarýlmasý için yazýlmýþ command
         _stackInteractionWithConveryorCommand = new StackInteractionWithConveyorCommand(this, ref _collectableStack);
         //Para, deðiþim yerinden geçtiðinde önce altýna, sonra elmasa dönüþüyor ve hem mesh olarak hem de deðer olarak deðiþim yaþanýyor
         //Burada o iþlemler yapýlacak.
         _stackTypeUpdaterCommand = new StackTypeUpdaterCommand(ref _collectableStack);
-        //Stackin oluþturulmasý için geçerli COmmand.
+        //Stackin oluþturulmasý için geçerli Command.
         _stackInitializerCommand = new StackInitializerCommand(this, ref money);
     }
 

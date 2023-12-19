@@ -43,13 +43,19 @@ public class ScoreManager : MonoBehaviour
     {
         return _money;
     }
-
+    //Karakter her para topladýðýnda StackTypeUpdaterCommand üzerinde hesaplanan totalListScore deðeri gönderilip karakter üzerindeki 
+    //totalScore yazdýrýlýr.
     private void OnSetScore(int setScore)
     {
+        //Burada ise setScore StackTypeUpdaterCommand üzerinde hesaplanan totalListScoredýr, _stackValueMultiplier(IncomeLeveldýr), _atmScoreValue
+        //ise OnSetAtmScore üzerinde hesaplanýr. totalListScore toplanan objenin + 1 deðeri üzerinden gelmektedir ve bu fonksiyon her obje için çalýþtýðý için
+        //_scoreCache deðeri ve setScore deðiþmektedir.
         _scoreCache = (setScore * _stackValueMultiplier) + _atmScoreValue;
+        //Burada da totalListScoreu Playerýn üstündeki score textine yazdýrýyoruz.
         PlayerSignals.Instance.onSetTotalScore?.Invoke(setScore);
     }
-
+    //_atmScoreValue deðeri kendisi ile toplanýp atmye deðen toplanabilir objenin bir fazlasý üzerinden(atmValues) ve _stackValueMultiplier yani IncomeLevel ile çarpýlarak hesaplanýyor
+    //ardýndan texti üzerine yazdýrýlýyor.
     private void OnSetAtmScore(int atmValues)
     {
         _atmScoreValue += atmValues * _stackValueMultiplier;
@@ -108,7 +114,8 @@ public class ScoreManager : MonoBehaviour
             return (int)(ES3.KeyExists("Money") ? ES3.Load<int>("Money") : 0);
         }
     }
-
+    //OnGetMultiplier minigame esnasýnda her deðdiði kare oranýnda 0.1 artarak belirlenen deðer oluyor.
+    //scoreCache ise OnSetMoneyde hesaplanmaktadýr, RefreshMoney, MiniGame bittikten sonra yani oyun sonunda ve oyun baþýnda hesaplanmaktadýr.
     private void RefreshMoney()
     {
         _money += (int)(_scoreCache * ScoreSignals.Instance.onGetMultiplier?.Invoke());

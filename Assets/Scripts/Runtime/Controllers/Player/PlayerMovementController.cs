@@ -98,8 +98,4 @@ public class PlayerMovementController : MonoBehaviour
         _isReadyToMove = false;
         _isReadyToPlay = false;
     }
-
-  
-
-
 }

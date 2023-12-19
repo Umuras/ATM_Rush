@@ -17,7 +17,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         PlayerSignals.Instance.onChangePlayerAnimationState += OnChangeAnimationState;
     }
-
+    //Karakterin bulunduðu duruma göre animasyonu deðiþtiriliyor. Idle, Run, Happy þeklinde. Happy MiniGamede çalýþýyor.
     private void OnChangeAnimationState(PlayerAnimationStates animationState)
     {
         animator.SetTrigger(animationState.ToString());

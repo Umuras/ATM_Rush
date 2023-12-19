@@ -44,7 +44,7 @@ public class ShopPanelController : MonoBehaviour
     private void OnSetIncomeLvlText()
     {
         incomeLvlText.text = "Income lvl\n" + CoreGameSignals.Instance.onGetIncomeLevel?.Invoke();
-        incomeValue.text = (Mathf.Pow(2, Mathf.Clamp((byte)CoreGameSignals.Instance.onGetIncomeLevel ?.Invoke(), (byte)0, (byte)10)) * 100).
+        incomeValue.text = (Mathf.Pow(2, Mathf.Clamp((byte)CoreGameSignals.Instance.onGetIncomeLevel?.Invoke(), 0, 10)) * 100).
             ToString();
     }
 
@@ -97,5 +97,4 @@ public class ShopPanelController : MonoBehaviour
             stackLvlButton.interactable = true;
         }
     }
-
 }

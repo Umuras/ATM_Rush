@@ -17,12 +17,14 @@ public class PlayerPhysicsController : MonoBehaviour
     {
         if (other.CompareTag(_obstacle))
         {
+            //Karakter bulunduðu konumdan z ekseninde 10 birim geri gidecek.
             managerRigidbody.transform.DOMoveZ(managerRigidbody.transform.position.z - 10f, 1f).SetEase(Ease.OutBack);
             return;
         }
 
         if (other.CompareTag(_atm))
         {
+            //Atmnin yok olma animasyonu oynayacak.
             CoreGameSignals.Instance.onAtmTouched?.Invoke(other.gameObject);
             return;
         }
