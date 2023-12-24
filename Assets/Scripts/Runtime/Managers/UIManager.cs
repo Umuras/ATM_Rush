@@ -34,6 +34,7 @@ public class UIManager : MonoBehaviour
         CoreUISignals.Instance.onOpenPanel?.Invoke(UIPanelTypes.Level, 1);
         CoreUISignals.Instance.onOpenPanel?.Invoke(UIPanelTypes.Shop, 2);
         UISignals.Instance.onSetNewLevelValue?.Invoke(levelValue);
+        UISignals.Instance.onSetMoneyValue?.Invoke((int)ScoreSignals.Instance.onGetMoney?.Invoke());
     }
 
     public void OnPlay()
